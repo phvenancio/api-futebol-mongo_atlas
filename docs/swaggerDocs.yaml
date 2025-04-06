@@ -2,7 +2,7 @@ paths:
   /auth:
     post:
       summary: Autentica um usuário e retorna um token JWT
-      tags: [Auth]
+      tags: [Autenticação]
       requestBody:
         required: true
         content:
@@ -26,7 +26,7 @@ paths:
                 properties:
                   token:
                     type: string
-                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    example: "tw5KJlvezEhemf0yOrakw8AMDF5F4XohfEaeZfhei0wm0ZTryihB50MpEcLhkw8i"
         400:
           description: Dados inválidos
         401:
@@ -39,7 +39,7 @@ paths:
   /user:
     post:
       summary: Cadastra um novo usuário
-      tags: [Create User]
+      tags: [Cadastro de usuário]
       requestBody:
         required: true
         content:
@@ -65,9 +65,9 @@ paths:
   /times:
     get:
       summary: Retorna a lista de todos os times cadastrados
-      tags: [GetAll Times]
+      tags: [Listagem de todos os Times]
       security:
-        - bearerAuth: [] 
+        - bearerAuth: []
       responses:
         200:
           description: Lista com todos os times
@@ -93,27 +93,26 @@ paths:
                     estadio:
                       type: string
                       example: "Neo Química Arena"
-                    tecnico: 
+                    tecnico:
                       type: string
                       example: "Ramon Diaz"
-                    titulares: 
+                    titulares:
                       type: array
                       items:
                         type: object
-                        properties: 
-                          nome: 
-                            type: string,
+                        properties:
+                          nome:
+                            type: string
                             example: "Rodrigo Garro"
-                          numero: 
+                          numero:
                             type: number
                             example: 8
         500:
           description: Erro interno do servidor
 
-  /times:
     post:
-      summary: Cria um novo time
-      tags: [Create Time]
+      summary: Cadastra um novo time
+      tags: [Cadastro de Time]
       security:
         - bearerAuth: []
       requestBody:
@@ -124,32 +123,33 @@ paths:
               type: object
               properties:
                 nome:
-                      type: string
-                      example: "Corinthians"
-                    pais:
-                      type: string
-                      example: "Brasil"
-                    campeonato:
-                      type: string
-                      example: "Brasileirão"
-                    estadio:
-                      type: string
-                      example: "Neo Química Arena"
-                    tecnico: 
-                      type: string
-                      example: "Ramon Diaz"
-                    titulares: 
-                      type: array
-                      items:
-                        type: object
-                        properties: 
-                          nome: 
-                            type: string,
-                            example: "Rodrigo Garro"
-                          numero: 
-                            type: number
-                            example: 8
-  /times/{id}:
+                  type: string
+                  example: "Corinthians"
+                pais:
+                  type: string
+                  example: "Brasil"
+                campeonato:
+                  type: string
+                  example: "Brasileirão"
+                estadio:
+                  type: string
+                  example: "Neo Química Arena"
+                tecnico:
+                  type: string
+                  example: "Ramon Diaz"
+                titulares:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      nome:
+                        type: string
+                        example: "Rodrigo Garro"
+                      numero:
+                        type: number
+                        example: 8
+
+  /times/id:
     parameters:
       - in: path
         name: id
@@ -157,9 +157,10 @@ paths:
         schema:
           type: string
         description: O ID do time a ser manipulado
+
     delete:
       summary: Apaga um time com base no seu ID
-      tags: [Delete time]
+      tags: [Exclusão de time]
       security:
         - bearerAuth: []
       responses:
@@ -169,9 +170,10 @@ paths:
           description: Dados inválidos
         500:
           description: Erro interno do servidor
+
     put:
       summary: Altera um time com base no seu ID
-      tags: [Update Time]
+      tags: [Alteração de Time]
       security:
         - bearerAuth: []
       requestBody:
@@ -180,32 +182,33 @@ paths:
           application/json:
             schema:
               type: object
-                    nome:
-                      type: string
-                      example: "Palmeiras"
-                    pais:
-                      type: string
-                      example: "Brasil"
-                    campeonato:
-                      type: string
-                      example: "Brasileirão"
-                    estadio:
-                      type: string
-                      example: "Allianz Parque"
-                    tecnico: 
-                      type: string
-                      example: "Abel Ferreira"
-                    titulares: 
-                      type: array
-                      items:
-                        type: object
-                        properties: 
-                          nome: 
-                            type: string,
-                            example: "Raphael Veiga"
-                          numero: 
-                            type: number
-                            example: 23
+              properties:
+                nome:
+                  type: string
+                  example: "Palmeiras"
+                pais:
+                  type: string
+                  example: "Brasil"
+                campeonato:
+                  type: string
+                  example: "Brasileirão"
+                estadio:
+                  type: string
+                  example: "Allianz Parque"
+                tecnico:
+                  type: string
+                  example: "Abel Ferreira"
+                titulares:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      nome:
+                        type: string
+                        example: "Raphael Veiga"
+                      numero:
+                        type: number
+                        example: 23
       responses:
         200:
           description: Time alterado com sucesso
@@ -216,7 +219,7 @@ paths:
 
     get:
       summary: Retorna um time específico com base no seu ID
-      tags: [GetOne Time]
+      tags: [Listagem de um Time]
       security:
         - bearerAuth: []
       responses:
@@ -229,19 +232,34 @@ paths:
                 properties:
                   _id:
                     type: string
-                    example: "6782b9b16d6ea34ace5bd199"
-                  title:
+                    example: "YVdgqn2rkj3HfJN9NbV1krru"
+                  nome:
                     type: string
-                    example: "CS-GO"
-                  platform:
+                    example: "Barcelona"
+                  pais:
                     type: string
-                    example: "PC (Windows)"
-                  year:
-                    type: integer
-                    example: 2012
-                  price:
-                    type: integer
-                    example: 0
+                    example: "Espanha"
+                  campeonato:
+                    type: string
+                    example: "La liga"
+                  estadio:
+                    type: string
+                    example: "Estádio Olímpico Lluís Companys"
+                  tecnico: 
+                    type: string
+                    example: "Hansi Flick"
+                  titulares: 
+                    type: array
+                    items: 
+                      type: objetct
+                      properties:
+                        nome: 
+                          type: string
+                          example: "Raphinha"
+                        numero: 
+                          type: number
+                          example: 11
+                        
         400:
           description: Dados inválidos
         500:
