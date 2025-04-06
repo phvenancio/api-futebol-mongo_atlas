@@ -1,16 +1,28 @@
 import mongoose from "mongoose";
 
 const titularSchema = new mongoose.Schema({
-  nome: String,
-  numero: Number
+  nomeJogador: String,
+  numeroJogador: Number
+});
+
+const camisa = new mongoose.Schema({
+  camisaGoleiro: String,
+  camisaLinha: String
+});
+
+const tecnico = new mongoose.Schema({
+  fotoTecnico: String,
+  nomeTecnico: String
 });
 
 const timeSchema = new mongoose.Schema({
+  logo: String,
   nome: String,
   pais: String,
   campeonato: String,
   estadio: String,
-  tecnico: String,
+  tecnico: [tecnico],
+  camisa: [camisa],
   titulares: [titularSchema]
 });
 
