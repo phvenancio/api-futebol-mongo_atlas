@@ -16,8 +16,8 @@ const getAllTimes = async (req, res) => {
 // Função para cadastrar times
 const createTime = async (req, res) => {
   try {
-    const { logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares } = req.body;
-    await timeService.Create(logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares);
+    const { logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares } = req.body;
+    await timeService.Create(logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares);
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
@@ -46,8 +46,8 @@ const updateTime = async (req, res) => {
   try {
     if (ObjectId.isValid(req.params.id)) {
       const id = req.params.id;
-      const { logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares } = req.body;
-      timeService.Update(id, logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares);
+      const { logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares } = req.body;
+      timeService.Update(id, logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares);
       res.sendStatus(200);
     } else {
       res.sendStatus(400);

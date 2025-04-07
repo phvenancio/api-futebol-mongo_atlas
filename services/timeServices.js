@@ -11,10 +11,11 @@ class timeService {
   }
     
   // Função para cadastrar times
-  async Create(logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares) {
+  async Create(logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares) {
     try {
       const newTime = new Time({
         logo,
+        descricao,
         nome, 
         pais, 
         campeonato, 
@@ -40,11 +41,12 @@ class timeService {
   }
     
   // Função para alterar times
-  async Update(id, logo, nome, pais, campeonato, estadio, camisa, tecnico, titulares) {
+  async Update(id, logo, nome, descricao, pais, campeonato, estadio, camisa, tecnico, titulares) {
     try {
       await timeService.findByIdAndUpdate(id, {
         logo,
         nome, 
+        descricao,
         pais, 
         campeonato, 
         estadio, 

@@ -18,6 +18,7 @@ const tecnico = new mongoose.Schema({
 const timeSchema = new mongoose.Schema({
   logo: String,
   nome: String,
+  descricao: String,
   pais: String,
   campeonato: String,
   estadio: String,
